@@ -30,6 +30,9 @@ function initializeAutocomplete(options) {
     debug: options.debug,
     detachedMediaQuery: "none",
     placeholder: I18n.t("discourse_algolia.search_box_placeholder"),
+    onSubmit: (state, event, context) => {
+      DiscourseURL.routeTo(`/search?q=${encodeURI(state.state.query)}`);
+    },
     getSources() {
       return [
         {
